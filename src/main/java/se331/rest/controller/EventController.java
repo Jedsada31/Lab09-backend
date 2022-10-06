@@ -29,14 +29,7 @@ public class EventController {
         Page<Event> pageOutput = eventService.getEvents(perPage, page);
         HttpHeaders responseHeader = new HttpHeaders();
         responseHeader.set("x-total-count",String.valueOf(pageOutput.getTotalElements()));
-        return new ResponseEntity<>(pageOutput.getTotalElements(),responseHeader,HttpStatus.OK);
-//        try {
-//            output = eventService.getEvents(perPage,page);
-//            return new ResponseEntity<>(output,responseHeader,HttpStatus.OK);
-//        } catch (IndexOutOfBoundsException ex) {
-//            return new ResponseEntity<>(output,responseHeader,HttpStatus.OK);
-//        }
-
+        return new ResponseEntity<>(pageOutput.getContent(),responseHeader,HttpStatus.OK);
     }
 
     @GetMapping("event/{id}")
