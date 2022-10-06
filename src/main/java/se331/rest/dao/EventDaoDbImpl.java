@@ -24,17 +24,13 @@ public class EventDaoDbImpl implements EventDao {
     public Page<Event> getEvents(Integer pageSize, Integer page) {
         return eventRepository.findAll(PageRequest.of(page - 1, pageSize));
     }
-//    public List<Event> getEvents(Integer pageSize, Integer page) {
-//        List<Event> events = eventRepository.findAll();
-//        pageSize = pageSize == null ? events.size() : pageSize;
-//        page = page == null ? 1 : page;
-//        int firstIndex = (page - 1) * pageSize;
-//        List<Event> output = events.subList(firstIndex, firstIndex + pageSize);
-//        return output;
-//    }
 
     @Override
     public Event getEvent(Long id) {
         return eventRepository.findById(id).orElse(null);
+    }
+    @Override
+    public Event save(Event event) {
+        return eventRepository.save(event);
     }
 }
